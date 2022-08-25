@@ -1,0 +1,23 @@
+:root {
+	--main-bg-color: #1d3557;
+	--main-font-color: #f1faee;
+}
+
+body {
+	width: 100vh;
+	height: 100vh;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
+	background-color: var(--main-bg-color);
+	color: var(--main-font-color);
+	font-family: "Ubuntu", sans-serif;
+}
+
+.main {
+	width: 100vh;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+}
