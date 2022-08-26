@@ -8,6 +8,7 @@ class SpecialCharactersValidator {
 		);
 
 		if (arrSpecial.length < 2) {
+			objResult.result = false;
 			objResult.errors.push(
 				"Password must contain at least 2 special characters"
 			);

@@ -19,7 +19,6 @@ class PasswordValidatorUseCase {
 		objResult = sequenceValidator.execute(password, objResult);
 
 		if (objResult.errors.length) {
-			objResult.result = false;
 			throw new AppError(objResult.errors);
 		}
 

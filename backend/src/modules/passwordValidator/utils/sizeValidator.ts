@@ -8,6 +8,7 @@ class SizeValidator {
 			arrPassword.length < MIN_SIZE_PASSWORD ||
 			arrPassword.length > MAX_SIZE_PASSWORD
 		) {
+			objResult.result = false;
 			objResult.errors.push("Invalid password size");
 		}
 
