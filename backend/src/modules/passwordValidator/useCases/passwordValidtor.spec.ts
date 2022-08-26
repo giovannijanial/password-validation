@@ -1,6 +1,7 @@
 import { LowercaseAndUppercaseValidator } from "../utils/lowercaseAndUppercaseValidator";
 import { SequenceValidator } from "../utils/sequenceValidator";
 import { SizeValidator } from "../utils/sizeValidator";
+import { SpaceValidator } from "../utils/spaceValidator";
 import { SpecialCharactersValidator } from "../utils/specialValidator";
 
 describe("Size Validator", () => {
@@ -148,6 +149,34 @@ describe("Sequence Validator", () => {
 			errors: [
 				"Password cannot contain more than 3 sequence of characters, letters or numbers",
 			],
+		});
+	});
+});
+
+describe("Space Validator", () => {
+	let spaceValidator: SpaceValidator;
+
+	beforeAll(() => {
+		spaceValidator = new SpaceValidator();
+	});
+
+	it("Should be possible to enter a password without containing spaces", async () => {
+		const objResult: IResult = { result: true, errors: [] };
+		const validPassword = "rZpy*D95&WBE'Z&B";
+		const validResult = spaceValidator.execute(validPassword, objResult);
+
+		expect(validResult).toEqual({
+			result: true,
+			errors: [],
+		});
+	});
+	it("Should not be possible to enter a password with spaces", async () => {
+		const objResult: IResult = { result: true, errors: [] };
+		const invalidPassword = " c|e_AbC>F%8J%k`N8";
+		const invalidResult = spaceValidator.execute(invalidPassword, objResult);
+		expect(invalidResult).toEqual({
+			result: false,
+			errors: ["Password cannot contain spaces"],
 		});
 	});
 });

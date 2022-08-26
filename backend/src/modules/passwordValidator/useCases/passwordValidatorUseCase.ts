@@ -2,6 +2,7 @@ import { AppError } from "../../../errors/AppError";
 import { LowercaseAndUppercaseValidator } from "../utils/lowercaseAndUppercaseValidator";
 import { SequenceValidator } from "../utils/sequenceValidator";
 import { SizeValidator } from "../utils/sizeValidator";
+import { SpaceValidator } from "../utils/spaceValidator";
 import { SpecialCharactersValidator } from "../utils/specialValidator";
 
 class PasswordValidatorUseCase {
@@ -12,11 +13,13 @@ class PasswordValidatorUseCase {
 		const specialCharactersValidator = new SpecialCharactersValidator();
 		const lowercaseAndUppercaseValidator = new LowercaseAndUppercaseValidator();
 		const sequenceValidator = new SequenceValidator();
+		const spaceValidator = new SpaceValidator();
 
 		objResult = sizeValidator.execute(password, objResult);
 		objResult = specialCharactersValidator.execute(password, objResult);
 		objResult = lowercaseAndUppercaseValidator.execute(password, objResult);
 		objResult = sequenceValidator.execute(password, objResult);
+		objResult = spaceValidator.execute(password, objResult);
 
 		if (objResult.errors.length) {
 			throw new AppError(objResult.errors);
