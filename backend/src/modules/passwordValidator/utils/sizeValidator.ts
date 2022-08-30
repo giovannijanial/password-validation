@@ -1,5 +1,5 @@
 class SizeValidator {
-	execute(password: string, objResult: IResult): IResult {
+	execute(password: string): boolean {
 		const MIN_SIZE_PASSWORD = 16;
 		const MAX_SIZE_PASSWORD = 32;
 		const arrPassword = password.split("");
@@ -8,11 +8,11 @@ class SizeValidator {
 			arrPassword.length < MIN_SIZE_PASSWORD ||
 			arrPassword.length > MAX_SIZE_PASSWORD
 		) {
-			objResult.result = false;
-			objResult.errors.push("Invalid password size");
+			return true;
+			
 		}
 
-		return objResult;
+		return false;
 	}
 }
 

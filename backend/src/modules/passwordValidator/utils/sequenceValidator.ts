@@ -1,5 +1,5 @@
 class SequenceValidator {
-	execute(password: string, objResult: IResult): IResult {
+	execute(password: string): boolean {
 		const lowercasePassword = password.toLocaleLowerCase();
 		const arrPassword = lowercasePassword.split("");
 		let hasSequence = false;
@@ -16,13 +16,10 @@ class SequenceValidator {
 		}
 
 		if (hasSequence) {
-			objResult.result = false;
-			objResult.errors.push(
-				"Password cannot contain more than 3 sequence of characters, letters or numbers"
-			);
+			return true;	
 		}
 
-		return objResult;
+		return false;
 	}
 }
 

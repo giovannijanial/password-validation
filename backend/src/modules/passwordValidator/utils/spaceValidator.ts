@@ -1,5 +1,5 @@
 class SpaceValidator {
-	execute(password: string, objResult: IResult): IResult {
+	execute(password: string): boolean {
 		const CHARCODE_SPACE = 32;
 		const arrPassword = password.split("");
 		let hasSpace = false;
@@ -11,10 +11,9 @@ class SpaceValidator {
 		});
 
 		if (hasSpace) {
-			objResult.result = false;
-			objResult.errors.push("Password cannot contain spaces");
+			return true;
 		}
-		return objResult;
+		return false;
 	}
 }
 

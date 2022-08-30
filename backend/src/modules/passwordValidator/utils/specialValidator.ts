@@ -1,5 +1,5 @@
 class SpecialCharactersValidator {
-	execute(password: string, objResult: IResult): IResult {
+	execute(password: string): boolean {
 		const SPECIAL_CHARACTERS = "!@#$%^&*()_+=-{}[];',./:<>?";
 		const arrPassword = password.split("");
 
@@ -8,12 +8,10 @@ class SpecialCharactersValidator {
 		);
 
 		if (arrSpecial.length < 2) {
-			objResult.result = false;
-			objResult.errors.push(
-				"Password must contain at least 2 special characters"
-			);
+			return true;
+			
 		}
-		return objResult;
+		return false;
 	}
 }
 

@@ -15,11 +15,27 @@ class PasswordValidatorUseCase {
 		const sequenceValidator = new SequenceValidator();
 		const spaceValidator = new SpaceValidator();
 
-		objResult = sizeValidator.execute(password, objResult);
-		objResult = specialCharactersValidator.execute(password, objResult);
-		objResult = lowercaseAndUppercaseValidator.execute(password, objResult);
-		objResult = sequenceValidator.execute(password, objResult);
-		objResult = spaceValidator.execute(password, objResult);
+		if(sizeValidator.execute(password)){
+			objResult.errors.push("Invalid password size");
+		}
+		if(specialCharactersValidator.execute(password)){
+			objResult.errors.push(
+				"Password must contain at least 2 special characters"
+			);
+		}
+		if(lowercaseAndUppercaseValidator.execute(password)){
+			objResult.errors.push(
+				"Password must contain uppercase and lowercase letters"
+			);
+		}
+		if(sequenceValidator.execute(password)){
+			objResult.errors.push(
+				"Password cannot contain more than 3 sequence of characters, letters or numbers"
+			);
+		}
+		if(spaceValidator.execute(password)){
+			objResult.errors.push("Password cannot contain spaces");
+		}
 
 		if (objResult.errors.length) {
 			throw new AppError(objResult.errors);

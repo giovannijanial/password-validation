@@ -1,5 +1,5 @@
 class LowercaseAndUppercaseValidator {
-	execute(password: string, objResult: IResult): IResult {
+	execute(password: string): boolean {
 		const SPECIAL_CHARACTERS = "!@#$%^&*()_+=-{}[];',./:<>?";
 		let hasLower = false;
 		let hasUpper = false;
@@ -22,13 +22,10 @@ class LowercaseAndUppercaseValidator {
 		});
 
 		if (!(hasLower && hasUpper)) {
-			objResult.result = false;
-			objResult.errors.push(
-				"Password must contain uppercase and lowercase letters"
-			);
+			return true;
 		}
 
-		return objResult;
+		return false;
 	}
 }
 
