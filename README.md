@@ -1,4 +1,4 @@
-# password-validation
+# password-validator
 
 >Application built to perform the following password checks:
 > - The password must contain 16 to 32 characters;
