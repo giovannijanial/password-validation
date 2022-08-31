@@ -9,31 +9,25 @@ class PasswordValidatorUseCase {
 	execute(password: string): IResult {
 		let objResult: IResult = { result: true, errors: [] };
 
-		const sizeValidator = new SizeValidator();
-		const specialCharactersValidator = new SpecialCharactersValidator();
-		const lowercaseAndUppercaseValidator = new LowercaseAndUppercaseValidator();
-		const sequenceValidator = new SequenceValidator();
-		const spaceValidator = new SpaceValidator();
-
-		if(sizeValidator.execute(password)){
+		if (SizeValidator.execute(password)) {
 			objResult.errors.push("Invalid password size");
 		}
-		if(specialCharactersValidator.execute(password)){
+		if (SpecialCharactersValidator.execute(password)) {
 			objResult.errors.push(
 				"Password must contain at least 2 special characters"
 			);
 		}
-		if(lowercaseAndUppercaseValidator.execute(password)){
+		if (LowercaseAndUppercaseValidator.execute(password)) {
 			objResult.errors.push(
 				"Password must contain uppercase and lowercase letters"
 			);
 		}
-		if(sequenceValidator.execute(password)){
+		if (SequenceValidator.execute(password)) {
 			objResult.errors.push(
 				"Password cannot contain more than 3 sequence of characters, letters or numbers"
 			);
 		}
-		if(spaceValidator.execute(password)){
+		if (SpaceValidator.execute(password)) {
 			objResult.errors.push("Password cannot contain spaces");
 		}
 

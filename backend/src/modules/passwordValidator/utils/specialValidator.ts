@@ -1,5 +1,5 @@
 class SpecialCharactersValidator {
-	execute(password: string): boolean {
+	static execute(password: string): boolean {
 		const SPECIAL_CHARACTERS = "!@#$%^&*()_+=-{}[];',./:<>?";
 		const arrPassword = password.split("");
 
@@ -9,7 +9,6 @@ class SpecialCharactersValidator {
 
 		if (arrSpecial.length < 2) {
 			return true;
-			
 		}
 		return false;
 	}

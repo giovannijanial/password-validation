@@ -1,5 +1,5 @@
 class SpaceValidator {
-	execute(password: string): boolean {
+	static execute(password: string): boolean {
 		const CHARCODE_SPACE = 32;
 		const arrPassword = password.split("");
 		let hasSpace = false;

@@ -1,5 +1,5 @@
 class LowercaseAndUppercaseValidator {
-	execute(password: string): boolean {
+	static execute(password: string): boolean {
 		const SPECIAL_CHARACTERS = "!@#$%^&*()_+=-{}[];',./:<>?";
 		let hasLower = false;
 		let hasUpper = false;

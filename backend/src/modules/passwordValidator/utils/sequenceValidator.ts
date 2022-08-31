@@ -1,5 +1,5 @@
 class SequenceValidator {
-	execute(password: string): boolean {
+	static execute(password: string): boolean {
 		const lowercasePassword = password.toLocaleLowerCase();
 		const arrPassword = lowercasePassword.split("");
 		let hasSequence = false;
@@ -16,7 +16,7 @@ class SequenceValidator {
 		}
 
 		if (hasSequence) {
-			return true;	
+			return true;
 		}
 
 		return false;

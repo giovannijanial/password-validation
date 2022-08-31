@@ -1,5 +1,5 @@
 class SizeValidator {
-	execute(password: string): boolean {
+	static execute(password: string): boolean {
 		const MIN_SIZE_PASSWORD = 16;
 		const MAX_SIZE_PASSWORD = 32;
 		const arrPassword = password.split("");
@@ -9,7 +9,6 @@ class SizeValidator {
 			arrPassword.length > MAX_SIZE_PASSWORD
 		) {
 			return true;
-			
 		}
 
 		return false;
