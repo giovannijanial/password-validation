@@ -1,33 +1,34 @@
 import { AppError } from "../../../errors/AppError";
-import { LowercaseAndUppercaseValidator } from "../utils/lowercaseAndUppercaseValidator";
-import { SequenceValidator } from "../utils/sequenceValidator";
-import { SizeValidator } from "../utils/sizeValidator";
-import { SpaceValidator } from "../utils/spaceValidator";
-import { SpecialCharactersValidator } from "../utils/specialValidator";
+import { IPasswordValidatorFactory } from "../../../factories/IPasswordValidatorFactory";
 
 class PasswordValidatorUseCase {
+	constructor(private passwordValidatorFactory: IPasswordValidatorFactory) {}
+
 	execute(password: string): IResult {
 		let objResult: IResult = { result: true, errors: [] };
 
-		if (SizeValidator.execute(password)) {
+		if (this.passwordValidatorFactory.sizePassword(password, 16, 36)) {
 			objResult.errors.push("Invalid password size");
 		}
-		if (SpecialCharactersValidator.execute(password)) {
+
+		if (this.passwordValidatorFactory.specialCharacters(password)) {
 			objResult.errors.push(
 				"Password must contain at least 2 special characters"
 			);
 		}
-		if (LowercaseAndUppercaseValidator.execute(password)) {
+		if (
+			this.passwordValidatorFactory.lowercaseAndUppercaseCharacters(password)
+		) {
 			objResult.errors.push(
 				"Password must contain uppercase and lowercase letters"
 			);
 		}
-		if (SequenceValidator.execute(password)) {
+		if (this.passwordValidatorFactory.sequenceCharacters(password)) {
 			objResult.errors.push(
 				"Password cannot contain more than 3 sequence of characters, letters or numbers"
 			);
 		}
-		if (SpaceValidator.execute(password)) {
+		if (this.passwordValidatorFactory.spaceCharacter(password)) {
 			objResult.errors.push("Password cannot contain spaces");
 		}
 

@@ -1,9 +1,3 @@
-import { LowercaseAndUppercaseValidator } from "../utils/lowercaseAndUppercaseValidator";
-import { SequenceValidator } from "../utils/sequenceValidator";
-import { SizeValidator } from "../utils/sizeValidator";
-import { SpaceValidator } from "../utils/spaceValidator";
-import { SpecialCharactersValidator } from "../utils/specialValidator";
-
 describe("Size Validator", () => {
 	it("Should be possible to enter a password containing 16 to 32 characters", async () => {
 		const validSizePassword = "wswswswswswswswswswswsws";

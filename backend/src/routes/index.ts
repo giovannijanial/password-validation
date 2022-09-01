@@ -1,9 +1,10 @@
-import { Router } from "express";
-import { PasswordValidatorController } from "../modules/passwordValidator/useCases/passwordValidatorController";
+import { Router, Request, Response } from "express";
+import { passwordValidatorController } from "../modules/passwordValidator/useCases";
 
 const route = Router();
-const passwordValidationController = new PasswordValidatorController();
 
-route.post("/", passwordValidationController.handle);
+route.post("/", (req: Request, res: Response) =>
+	passwordValidatorController.handle(req, res)
+);
 
 export { route };
