@@ -1,11 +1,14 @@
 import { IPasswordValidatorFactory } from "../IPasswordValidatorFactory";
 
 class SizeValidator implements IPasswordValidatorFactory {
-	execute(password: string, minSize: number = 0, maxSize: number = 10): string {
+	execute(password: string): string | void {
+		const MIN_SIZE = 16;
+		const MAX_SIZE = 36;
 		const arrPassword = password.split("");
-		if (arrPassword.length < minSize || arrPassword.length > maxSize)
+
+		if (arrPassword.length < MIN_SIZE || arrPassword.length > MAX_SIZE)
 			return "Invalid password size";
-		return "";
+		return;
 	}
 }
 

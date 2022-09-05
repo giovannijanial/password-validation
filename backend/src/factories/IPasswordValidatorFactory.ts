@@ -1,5 +1,5 @@
 interface IPasswordValidatorFactory {
-	execute(password: string, minSize?: number, maxSize?: number): string;
+	execute(password: string): string | void;
 }
 
 export { IPasswordValidatorFactory };

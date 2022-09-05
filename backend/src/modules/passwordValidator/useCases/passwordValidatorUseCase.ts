@@ -1,40 +1,16 @@
 import { AppError } from "../../../errors/AppError";
-import {
-	LowercaseAndUppercaseValidator,
-	SequenceCharactersValidator,
-	SizeValidator,
-	SpaceValidator,
-	SpecialCharactersValidator,
-} from "../../../factories/implementations/Index";
+import { IPasswordValidatorFactory } from "../../../factories/IPasswordValidatorFactory";
 
 class PasswordValidatorUseCase {
-	constructor(
-		private lowercaseAndUppercaseValidator: LowercaseAndUppercaseValidator,
-		private sequenceCharactersValidator: SequenceCharactersValidator,
-		private sizeValidator: SizeValidator,
-		private specialCharactersValidator: SpecialCharactersValidator,
-		private spaceValidator: SpaceValidator
-	) {}
+	constructor(private passwordValidatorFactory: IPasswordValidatorFactory[]) {}
 
 	execute(password: string): IResult {
-		const validations = [
-			this.lowercaseAndUppercaseValidator.execute(password),
-			this.sequenceCharactersValidator.execute(password),
-			this.sizeValidator.execute(password, 16, 36),
-			this.specialCharactersValidator.execute(password),
-			this.spaceValidator.execute(password),
-		];
+		const objResult: IResult = { result: true, errors: [] };
 
-		const objResult = validations.reduce(
-			(acc: IResult, err: string) => {
-				if (err) {
-					acc.errors.push(err);
-					acc.result = false;
-				}
-				return acc;
-			},
-			{ result: true, errors: [] }
-		);
+		this.passwordValidatorFactory.forEach((validation) => {
+			const error = validation.execute(password);
+			if (error) objResult.errors.push(error);
+		});
 
 		if (objResult.errors.length) {
 			throw new AppError(objResult.errors);

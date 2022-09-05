@@ -1,7 +1,7 @@
 import { IPasswordValidatorFactory } from "../IPasswordValidatorFactory";
 
 class SequenceCharactersValidator implements IPasswordValidatorFactory {
-	execute(password: string): string {
+	execute(password: string): string | void {
 		const arrPassword = password.toLowerCase().split("");
 
 		if (
@@ -14,7 +14,7 @@ class SequenceCharactersValidator implements IPasswordValidatorFactory {
 			)
 		)
 			return "Password cannot contain more than 3 sequence of characters, letters or numbers";
-		return "";
+		return;
 	}
 }
 

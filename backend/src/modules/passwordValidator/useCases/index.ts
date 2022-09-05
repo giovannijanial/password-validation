@@ -12,13 +12,13 @@ const sizeValidator = new SizeValidator();
 const specialCharactersValidator = new SpecialCharactersValidator();
 const spaceValidator = new SpaceValidator();
 
-const passwordValidationUseCase = new PasswordValidatorUseCase(
+const passwordValidationUseCase = new PasswordValidatorUseCase([
 	lowercaseAndUppercaseValidator,
 	sequenceCharactersValidator,
 	sizeValidator,
 	specialCharactersValidator,
-	spaceValidator
-);
+	spaceValidator,
+]);
 const passwordValidatorController = new PasswordValidatorController(
 	passwordValidationUseCase
 );

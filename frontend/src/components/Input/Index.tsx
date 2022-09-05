@@ -36,6 +36,7 @@ const Input = () => {
           <button
             className="button"
             type="submit"
+            disabled={loading}
           >
             Validate
           </button>

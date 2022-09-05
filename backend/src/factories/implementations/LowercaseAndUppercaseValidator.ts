@@ -1,7 +1,7 @@
 import { IPasswordValidatorFactory } from "../IPasswordValidatorFactory";
 
 class LowercaseAndUppercaseValidator implements IPasswordValidatorFactory {
-	execute(password: string): string {
+	execute(password: string): string | void {
 		const SPECIAL_CHARACTERS = "!@#$%^&*()_+=-{}[];',./:<>?";
 		const arrPassword = password
 			.split("")
@@ -16,7 +16,7 @@ class LowercaseAndUppercaseValidator implements IPasswordValidatorFactory {
 
 		if (!(hasLower && hasUpper))
 			return "Password must contain uppercase and lowercase letters";
-		return "";
+		return;
 	}
 }
 
