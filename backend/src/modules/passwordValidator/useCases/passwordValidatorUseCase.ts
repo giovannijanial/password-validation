@@ -17,30 +17,24 @@ class PasswordValidatorUseCase {
 	) {}
 
 	execute(password: string): IResult {
-		let objResult: IResult = { result: true, errors: [] };
+		const validations = [
+			this.lowercaseAndUppercaseValidator.execute(password),
+			this.sequenceCharactersValidator.execute(password),
+			this.sizeValidator.execute(password, 16, 36),
+			this.specialCharactersValidator.execute(password),
+			this.spaceValidator.execute(password),
+		];
 
-		if (this.sizeValidator.execute(password, 16, 36)) {
-			objResult.errors.push("Invalid password size");
-		}
-
-		if (this.specialCharactersValidator.execute(password)) {
-			objResult.errors.push(
-				"Password must contain at least 2 special characters"
-			);
-		}
-		if (this.lowercaseAndUppercaseValidator.execute(password)) {
-			objResult.errors.push(
-				"Password must contain uppercase and lowercase letters"
-			);
-		}
-		if (this.sequenceCharactersValidator.execute(password)) {
-			objResult.errors.push(
-				"Password cannot contain more than 3 sequence of characters, letters or numbers"
-			);
-		}
-		if (this.spaceValidator.execute(password)) {
-			objResult.errors.push("Password cannot contain spaces");
-		}
+		const objResult = validations.reduce(
+			(acc: IResult, err: string) => {
+				if (err) {
+					acc.errors.push(err);
+					acc.result = false;
+				}
+				return acc;
+			},
+			{ result: true, errors: [] }
+		);
 
 		if (objResult.errors.length) {
 			throw new AppError(objResult.errors);
