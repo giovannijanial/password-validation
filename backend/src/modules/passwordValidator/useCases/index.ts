@@ -1,8 +1,10 @@
-import { LowercaseAndUppercaseValidator } from "../../../factories/implementations/LowercaseAndUppercaseValidator";
-import { SequenceCharactersValidator } from "../../../factories/implementations/SequenceCharactersValidator";
-import { SizeValidator } from "../../../factories/implementations/SizeValidator";
-import { SpaceValidator } from "../../../factories/implementations/SpaceValidator";
-import { SpecialCharactersValidator } from "../../../factories/implementations/SpacialCharactersValidator";
+import {
+	LowercaseAndUppercaseValidator,
+	SequenceCharactersValidator,
+	SizeValidator,
+	SpaceValidator,
+	SpecialCharactersValidator,
+} from "../../../factories/implementations/Index";
 import { PasswordValidatorController } from "./passwordValidatorController";
 import { PasswordValidatorUseCase } from "./passwordValidatorUseCase";
 
